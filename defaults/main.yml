@@ -1,0 +1,10 @@
+---
+smartd_short_test_month: '..'
+smartd_short_test_dom: '..'
+smartd_short_test_dow: '.'
+smartd_short_test_hour: '02'
+
+smartd_long_test_month: '..'
+smartd_long_test_dom: '..'
+smartd_long_test_dow: '1'
+smartd_long_test_hour: '03'
