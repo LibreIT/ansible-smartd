@@ -10,11 +10,18 @@
 - name: check if disks support SMART
   shell: "smartctl -i {{ item }} | grep -qc 'SMART support is: Enabled'"
   with_items: disks.stdout_lines
+  register: smart
+  ignore_errors: True
+
+- name: install smartmontools
+  apt: pkg=smartmontools state=absent
+  when: smart|failed
 
 - name: create smartd configuration file
   template: src=smartd.conf.j2 dest=/etc/smartd.conf
     owner=root group=root mode=0644
   notify: restart smartd
+  when: smart|success
 
 - name: enable smartd on system startup (default file)
   lineinfile: >
@@ -22,6 +29,7 @@
     regexp="^start_smartd="
     line="start_smartd=yes"
   notify: restart smartd
+  when: smart|success
 
 - name: pass additional options to smartd on startup (default file)
   lineinfile: >
@@ -29,6 +37,8 @@
     regexp="^smartd_opts="
     line='smartd_opts="--interval=1800"'
   notify: restart smartd
+  when: smart|success
 
 - name: enable smartd service
   service: name=smartd enabled=yes
+  when: smart|success
