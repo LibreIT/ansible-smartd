@@ -33,6 +33,14 @@ A randomization of scheduled time (hour,dow) is enabled to avoid to test many di
 
 Note: "." (dot) are like "?" wildcard in smartd config.
 
+Example
+========
+
+    - hosts: example
+      roles:
+         - { role: kalos.smartd }
+
+
 License
 -------
 
