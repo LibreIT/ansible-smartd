@@ -1,14 +1,14 @@
 {% for disk in disks.stdout_lines %}
-{% if smartd_long_test_dow is not defined %}
-{% set smartd_long_test_dow = range(1,8)|random %}
+{% if smartd.long_test_dow is not defined %}
+{% set smartd.long_test_dow = range(1,8)|random %}
 {% endif %}
-{% if smartd_long_test_hour is not defined %}
-{% set smartd_long_test_hour = range(1,24)|random %}
-{% set smartd_long_test_hour = "{0:02d}".format(smartd_long_test_hour) %}
+{% if smartd.long_test_hour is not defined %}
+{% set smartd.long_test_hour = range(1,24)|random %}
+{% set smartd.long_test_hour = "{0:02d}".format(smartd.long_test_hour) %}
 {% endif %}
-{% if smartd_short_test_hour is not defined %}
-{% set smartd_short_test_hour = range(1,24)|random %}
-{% set smartd_short_test_hour = "{0:02d}".format(smartd_short_test_hour) %}
+{% if smartd.short_test_hour is not defined %}
+{% set smartd.short_test_hour = range(1,24)|random %}
+{% set smartd.short_test_hour = "{0:02d}".format(smartd.short_test_hour) %}
 {% endif %}
-{{ disk }} -a -o on -S on -s (S/{{ smartd_short_test_month }}/{{ smartd_short_test_dom }}/{{ smartd_short_test_dow }}/{{ smartd_short_test_hour }}|L/{{ smartd_long_test_month }}/{{ smartd_long_test_dom }}/{{ smartd_long_test_dow }}/{{ smartd_long_test_hour }}) -m root
+{{ disk }} -a -o on -S on -s (S/{{ smartd.short_test_month }}/{{ smartd.short_test_dom }}/{{ smartd.short_test_dow }}/{{ smartd.short_test_hour }}|L/{{ smartd.long_test_month }}/{{ smartd.long_test_dom }}/{{ smartd.long_test_dow }}/{{ smartd.long_test_hour }}) -m root
 {% endfor %}

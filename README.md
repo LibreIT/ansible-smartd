@@ -15,24 +15,19 @@ HDDs/SSDs with S.M.A.R.T. enabled.
 Role Variables
 --------------
 
-  **smartd_short_test_month** - month to start test (two decimal digits: 01 - 12)
-
-  **smartd_short_test_dom** - day of the month to start test (two decimal digits: 01 - 31)
-
-  **smartd_short_test_dow** - day of the week to start test (one decimal digit: 1 - 7)
-
-  **smartd_short_test_hour** - hour of the day to start test (two decimal digits: 00 - 23)  
-  If this variable is not defined the value is random
-
-  **smartd_long_test_month** - month to start test (two decimal digits: 01 - 12)
-
-  **smartd_long_test_dom** - day of the month to start test (two decimal digits: 01 - 31)
-
-  **smartd_long_test_dow** - day of the week to start test (one decimal digit: 1 - 7)  
-  If this variable is not defined the value is random
-
-  **smartd_long_test_hour** - hour of the day to start test (two decimal digits: 00 - 23)  
-  If this variable is not defined the value is random  
+    smartd:
+      short_test_month: '..' # month to start short test (two decimal digits: 01 - 12)
+      short_test_dom: '..'   # day of the month to start short test (two decimal digits: 01 - 31)
+      short_test_dow: '.'    # day of the week to start short test (one decimal digit: 1 - 7)
+      short_test_hour: '02'  # hour of the day to start short test (two decimal digits: 00 - 23)
+                             # note: if this variable is not defined the value is random
+    
+      long_test_month: '..'  # month to start long test (two decimal digits: 01 - 12)
+      long_test_dom: '..'    # day of the month to start long test (two decimal digits: 01 - 31)
+      long_test_dow: '1'     # day of the week to start long test (one decimal digit: 1 - 7)
+                             # note: if this variable is not defined the value is random
+      long_test_hour: '03'   # hour of the day to start long test (two decimal digits: 00 - 23)
+                             # note: if this variable is not defined the value is random
 
 A randomization of scheduled time (hour,dow) is enabled to avoid to test many disks in the same time. 
 
