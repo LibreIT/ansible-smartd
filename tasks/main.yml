@@ -13,7 +13,7 @@
   register: smart
   ignore_errors: True
 
-- name: install smartmontools
+- name: remove smartmontools
   apt: pkg=smartmontools state=absent
   when: smart|failed
 
