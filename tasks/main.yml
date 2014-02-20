@@ -8,7 +8,7 @@
   register: disks
 
 - name: check if disks support SMART
-  shell: "smartctl -i {{ item }} | grep -qc 'SMART support is: Enabled'"
+  shell: "smartctl -s on {{ item }} ; smartctl -i {{ item }} | grep -qc 'SMART support is: Enabled'"
   with_items: disks.stdout_lines
   register: smart
   ignore_errors: True
